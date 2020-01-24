@@ -14,7 +14,7 @@ class CreateArticleAuthTable extends Migration
     public function up()
     {
         Schema::create('article_auth', function (Blueprint $table) {
-            $table->increments('id');
+            $table->Increments('id');
             $table->integer('article_id')->index();
             $table->smallInteger('msg_status');   
         });
