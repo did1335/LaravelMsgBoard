@@ -17,8 +17,7 @@ class CreateMessageTable extends Migration
             $table->increments('id');
             $table->string('title', 20);    
             $table->text('article');    
-            $table->string('creator', 20)->index(); 
-            $table->datetime('update_time');
+            $table->string('creator', 20)->index();
             $table->timestamps();
         });
     }

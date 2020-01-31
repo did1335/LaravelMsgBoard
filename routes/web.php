@@ -11,10 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'BlogController@index');
+
+    Route::group(['prefix' => 'message'], function () {
+        Route::get('create', 'BlogController@create')->name('form.create');
+        Route::post('/', 'BlogController@store');
+        Route::get('{id}', 'BlogController@show');
+        Route::get('{id}/edit', 'BlogController@edit');
+        Route::put('{id}', 'BlogController@update');
+        Route::delete('{id}', 'BlogController@destroy');
+    });
+
+});
